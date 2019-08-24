@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/edluffy/.vim/pack/tpope/start/surround'
+let g:netrw_dirhist_2='/Users/edluffy/kandrc'
+let g:netrw_dirhist_3='/Users/edluffy/.vim'
