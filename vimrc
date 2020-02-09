@@ -1,8 +1,26 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+Plug 'rstacruz/vim-closer'
+Plug 'sheerun/vim-polyglot'
+Plug 'lervag/vimtex'
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/promptline.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'preservim/nerdtree'
+
+
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+colorscheme palenight
+"let g:palenight_terminal_italics=1
+
 set termguicolors
-colorscheme PaperColor
-set background=dark
-	
+
 syntax on
 set wildmenu
 set number
@@ -12,14 +30,6 @@ set backspace=indent,eol,start
 set laststatus=2
 filetype plugin indent on
 
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+let g:vimtex_fold_enabled = 1
 
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-
-map <F8> :w <CR> :!gcc % && ./a.out <CR>
+map <F8> :w <CR> :!make program="%:r" && ./"%:h" <CR>

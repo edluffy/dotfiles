@@ -1,0 +1,34 @@
+# taps
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+
+# shell tools
+cask "kitty"
+brew "tmux"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "python"
+brew "tree"
+
+# vim/textedit tools
+brew "macvim"
+cask "mactex"
+
+# embedded tools
+brew "avrdude"
+brew "avr-gcc"
+brew "platformio"
+
+# apps
+cask "google-chrome"
+cask "spotify"
+cask "transmission"
+cask "visual-studio-code"
+
+# fonts
+cask 'font-fira-code'
+
+# fun!
+brew "sl"
