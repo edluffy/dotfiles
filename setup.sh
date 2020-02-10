@@ -43,7 +43,6 @@ cd ~
 brew bundle
 cd -
 
-
 echo -e "\n====== Install Finished! ======\n"
 echo
 echo "Enjoy - edluffy"

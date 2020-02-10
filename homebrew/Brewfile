@@ -1,25 +1,32 @@
 # taps
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "osx-cross/avr"
 tap "homebrew/cask-fonts"
 
 # shell tools
 cask "kitty"
 brew "tmux"
 brew "zsh"
+brew "git"
+brew "wget"
+brew "python"
+
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-brew "python"
+brew "fzf"
 brew "tree"
 
 # vim/textedit tools
 brew "macvim"
 cask "mactex"
 
-# embedded tools
+# embedded / C tools
 brew "avrdude"
 brew "avr-gcc"
 brew "platformio"
+brew "gcc"
+
 
 # apps
 cask "google-chrome"
