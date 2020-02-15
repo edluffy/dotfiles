@@ -6,7 +6,6 @@ tap "homebrew/cask-fonts"
 
 # shell tools
 cask "kitty"
-brew "tmux"
 brew "zsh"
 brew "git"
 brew "wget"
@@ -22,11 +21,10 @@ brew "macvim"
 cask "mactex"
 
 # embedded / C tools
-brew "avrdude"
-brew "avr-gcc"
-brew "platformio"
 brew "gcc"
-
+brew "avr-gcc"
+brew "avrdude"
+brew "platformio"
 
 # apps
 cask "google-chrome"

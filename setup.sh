@@ -3,6 +3,7 @@
 if test ! $(which brew); then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
+
 brew doctor
 brew update
 
@@ -40,6 +41,8 @@ echo ${SYMLINKS[@]}
 
 # Install all packages
 cd ~
+#brew remove --force $(brew list) // purge
+brew bundle --force cleanup
 brew bundle
 cd -
 

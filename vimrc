@@ -5,11 +5,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/promptline.vim'
-Plug 'edkolev/tmuxline.vim'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'preservim/nerdtree'
-
 
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
