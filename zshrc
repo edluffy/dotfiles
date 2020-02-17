@@ -1,4 +1,9 @@
+#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias ls='ls -a -G'
+alias h='cd ~/'
 
 autoload -Uz compinit
 compinit

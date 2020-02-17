@@ -7,6 +7,7 @@ tap "homebrew/cask-fonts"
 # shell tools
 cask "kitty"
 brew "zsh"
+brew "tmux"
 brew "git"
 brew "wget"
 brew "python"
