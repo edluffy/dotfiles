@@ -96,7 +96,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	sudo apt-get upgrade
 
 	echo -e "\n====== Searching for uninstalled Linux tools... ======\n"
-	sudo apt-get "${linuxtools[@]}"
+	sudo apt-get ${linuxtools[@]}
 fi
 
 echo -e "\n====== Symlink Setup Finished! ======\n"
