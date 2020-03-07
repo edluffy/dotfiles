@@ -22,7 +22,7 @@ let &t_ZR="\e[23m"
 
 
 if$SSH_CONNECTION
-	highlight! Normal guibd=#15161F
+	highlight! Normal guibg=#15161F
 endif
 
 let &t_ut=''
