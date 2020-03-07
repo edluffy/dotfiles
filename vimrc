@@ -14,6 +14,7 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
+syntax on
 colorscheme palenight
 
 let g:palenight_terminal_italics=1
@@ -28,7 +29,6 @@ endif
 let &t_ut=''
 set termguicolors
 
-syntax on
 set wildmenu
 set number
 set cursorline
