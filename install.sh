@@ -1,19 +1,7 @@
 # Ask for administrator passowrd
 sudo -v 
 
-# Install homebrew if not already
-if test ! $(which brew); then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-brew doctor
-brew update
-
-
-cd ~
-#brew remove --force $(brew list) # optional purge
-
-tools=(
+mactools=(
 	# shell tools
 	zsh
 	tmux
@@ -49,20 +37,67 @@ macapps=(
 	mactex
 )
 
-# Install all tools
-echo -e "\n====== Searching for uninstalled cross-platform tools... ======\n"
-brew list "${tools[@]}" &>/dev/null || brew install "${tools[@]}"
+linuxtools=(
+	# shell tools
+	zsh
+	tmux
+	git
+	wget
+	python
 
-# Install correct apps
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	fzf
+	tree
+
+	# embedded / C tools
+	gcc
+	vim-gui-common
+
+	# fun!
+	sl
+)
+
+linuxapps=(
+	# nothing yet
+)
+
+################### MAC SETUP ####################
 if [ "$(uname)" == "Darwin" ]; then
+
+	# Install homebrew if not already
+	if test ! $(which brew); then
+	  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	fi
+
+	#brew remove --force $(brew list) # optional purge
+	brew doctor
+	brew update
+
+	# taps
+	brew tap "homebrew/bundle"
+	brew tap "homebrew/cask"
+	brew tap "osx-cross/avr"
+
+	cd ~
+
+	echo -e "\n====== Searching for uninstalled Mac tools... ======\n"
+	brew list "${mactools[@]}" &>/dev/null || brew install "${mactools[@]}"
+
 	echo -e "\n====== Searching for uninstalled Mac apps... ======"
 	brew cask list "${macapps[@]}" &>/dev/null || brew cask install "${macapps[@]}"
 fi
 
-# taps
-brew tap "homebrew/bundle"
-brew tap "homebrew/cask"
-brew tap "osx-cross/avr"
+################### LINUX SETUP ####################
+
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+
+	sudo apt-get update
+	sudo apt-get upgrade
+
+	echo -e "\n====== Searching for uninstalled Linux tools... ======\n"
+	sudo apt-get "${linuxtools[@]}"
+fi
 
 echo -e "\n====== Symlink Setup Finished! ======\n"
 echo
