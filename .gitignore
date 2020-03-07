@@ -1,4 +1,3 @@
 # Ignore installed plugins
 vim/plugged/**
-vim/autoload/**
 vim/.netrwhist
