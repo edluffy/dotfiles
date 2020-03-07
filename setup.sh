@@ -31,7 +31,8 @@ SYMLINKS+=('.vimrc')
 ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
 
+vim +PlugInstall +PlugClean +qall
+
 echo ${SYMLINKS[@]}
-echo -e "\n====== Symlink Setup Finished! ======\n"
-echo
+echo -e "\n====== Symlink Setup Finished! ======"
 echo "Enjoy - edluffy"

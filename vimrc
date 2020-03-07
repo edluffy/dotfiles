@@ -20,6 +20,11 @@ let g:palenight_terminal_italics=1
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
+
+if$SSH_CONNECTION
+	highlight! Normal guibd=#15161F
+endif
+
 let &t_ut=''
 set termguicolors
 
