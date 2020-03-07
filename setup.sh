@@ -1,3 +1,5 @@
+# Ask for administrator passowrd
+sudo -v 
 
 # Install homebrew if not already
 if test ! $(which brew); then
@@ -39,12 +41,59 @@ SYMLINKS+=('Brewfile')
 
 echo ${SYMLINKS[@]}
 
-# Install all packages
 cd ~
-#brew remove --force $(brew list) // purge
-brew bundle --force cleanup
-brew bundle
-cd -
+#brew remove --force $(brew list) # optional purge
+
+# taps
+brew tap "homebrew/bundle"
+brew tap "homebrew/cask"
+brew tap "osx-cross/avr"
+
+tools=(
+	# shell tools
+	zsh
+	tmux
+	git
+	wget
+	python
+
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	fzf
+	tree
+
+	# embedded / C tools
+	gcc
+	avr-gcc
+	avrdude
+	macvim
+	platformio
+
+	# fun!
+	sl
+)
+
+macapps=(
+	# misc apps
+	kitty
+	google-chrome
+	spotify
+	transmission
+	visual-studio-code
+	balenaetcher
+	ltspice
+	mactex
+)
+
+# Install all tools
+echo -e "\n====== Searching for uninstalled cross-platform tools... ======\n"
+brew list "${tools[@]}" &>/dev/null || brew install "${tools[@]}"
+
+# Install correct apps
+if [ "$(uname)" == "Darwin" ]; then
+	echo -e "\n====== Searching for uninstalled Mac apps... ======"
+	brew cask list "${macapps[@]}" &>/dev/null || brew cask install "${macapps[@]}"
+fi
 
 echo -e "\n====== Install Finished! ======\n"
 echo

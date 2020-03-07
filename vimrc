@@ -15,7 +15,10 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme palenight
-"let g:palenight_terminal_italics=1
+
+let g:palenight_terminal_italics=1
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
 
 let &t_ut=''
 set termguicolors
@@ -28,6 +31,5 @@ set autoindent
 set backspace=indent,eol,start
 set laststatus=2
 filetype plugin indent on
-
 
 map <F8> :w <CR> :!make program="%:r" && ./"%:h" <CR>
