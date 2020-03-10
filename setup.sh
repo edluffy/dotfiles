@@ -3,7 +3,7 @@ sudo -v
 
 # Delete old dotfiles
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
-sudo rm -rf ~/.zsh > /dev/null 2>&1
+sudo rm -rf ~/.zfunctions > /dev/null 2>&1
 sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
 sudo rm -rf ~/.gitconfig > /dev/null 2>&1
@@ -17,8 +17,8 @@ sudo rm -rf ~/Brewfile > /dev/null 2>&1
 SYMLINKS=()
 ln -sf ~/dotfiles/zshrc ~/.zshrc
 SYMLINKS+=('.zshrc')
-ln -sf ~/dotfiles/zsh ~/.zsh
-SYMLINKS+=('.zsh')
+ln -sf ~/dotfiles/zfunctions ~/.zfunctions
+SYMLINKS+=('.zfunctions')
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
 ln -sf ~/dotfiles/config ~/.config
