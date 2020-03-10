@@ -1,7 +1,6 @@
 # taps
 tap "homebrew/bundle"
 tap "homebrew/cask"
-#tap "osx-cross/avr"
 
 # shell tools
 brew "zsh"
@@ -18,7 +17,19 @@ brew "tree"
 # embedded / C tools
 brew "gcc"
 brew "avr-gcc"
-brew "avrdude"
+brew "avrdude" 
+brew "platformio"
 
 # fun!
 brew "sl"
+
+# apps
+cask "kitty"
+cask "macvim"
+cask "google-chrome"
+cask "spotify"
+cask "transmission"
+cask "visual-studio-code"
+cask "balenaetcher"
+cask "ltspice"
+cask "basictex"
