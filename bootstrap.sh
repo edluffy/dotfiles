@@ -24,7 +24,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	sudo apt-get upgrade
 	xargs -a packages/Aptfile sudo apt-get install
 
-	chsh -s /bin/zsh
+	sudo chsh -s /bin/zsh
 fi
 
 echo -e "\n====== Bootstrapping Finished! ======\n"

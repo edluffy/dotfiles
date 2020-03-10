@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'rstacruz/vim-closer'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
-Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
