@@ -34,6 +34,9 @@ SYMLINKS+=('.vimrc')
 ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
 
+ln -s "~dotfiles/lambda-pure.zsh" /usr/local/share/zsh/site-functions/prompt_lambda-pure_setup
+ln -s "~dotfiles/async.zsh" /usr/local/share/zsh/site-functions/async
+
 vim +PlugInstall +PlugClean +qall
 
 echo ${SYMLINKS[@]}
