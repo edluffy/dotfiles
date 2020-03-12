@@ -3,6 +3,8 @@
 fpath=( "$HOME/.zsh" $fpath )
 
 alias pi='tmux select-pane -P "bg=#15161F" && ssh pi@10.14.185.236 && tmux select-pane -P "bg=black"'
+alias greytmx='tmux select-pane -P "bg=#15161F"'
+alias blacktmx='tmux select-pane -P "bg=black"'
 alias ls='ls -a -G'
 alias h='cd ~/'
 
