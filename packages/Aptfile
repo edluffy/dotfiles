@@ -3,10 +3,6 @@ tmux
 git
 wget
 python
-
-zsh-autosuggestions
-zsh-syntax-highlighting
-fzf
 tree
 
 gcc

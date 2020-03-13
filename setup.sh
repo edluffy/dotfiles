@@ -31,11 +31,6 @@ SYMLINKS+=('.vimrc')
 sudo ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
 
-sudo ln -s "~dotfiles/lambda-pure.zsh" /usr/local/share/zsh/site-functions/prompt_lambda-pure_setup
-sudo ln -s "~dotfiles/async.zsh" /usr/local/share/zsh/site-functions/async
-
-vim +PlugInstall +PlugClean +qall
-
 echo ${SYMLINKS[@]}
 echo -e "\n====== Symlink Setup Finished! ======"
 echo "Enjoy - edluffy"
