@@ -1,17 +1,4 @@
-call plug#begin('~/.vim/plugged')
-
-Plug 'rstacruz/vim-closer'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
-Plug 'christoomey/vim-tmux-navigator'
-
-Plug 'drewtempelmeyer/palenight.vim'
-
-Plug 'junegunn/fzf', { 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-call plug#end()
+execute pathogen#infect()
 
 syntax on
 colorscheme palenight
@@ -27,12 +14,7 @@ endif
 let &t_ut=''
 set termguicolors
 
-set wildmenu
 set number
 set cursorline
-set autoindent
-set backspace=indent,eol,start
-set laststatus=2
-filetype plugin indent on
 
 map <F8> :w <CR> :!make program="%:r" && ./"%:h" <CR>

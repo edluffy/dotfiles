@@ -8,10 +8,6 @@ brew "tmux"
 brew "git"
 brew "wget"
 brew "python"
-
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
-brew "fzf"
 brew "tree"
 
 # embedded / C tools
