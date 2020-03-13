@@ -1,6 +1,7 @@
 source ~/dotfiles/antigen.zsh
 
 antigen theme denysdovhan/spaceship-prompt
+antigen bundle colored-man-pages
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 
