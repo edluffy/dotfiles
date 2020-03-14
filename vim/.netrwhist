@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/Users/edluffy/Documents/Labs/P2'
 let g:netrw_dirhist_1='/Users/edluffy/dotfiles'
 let g:netrw_dirhist_0='/Users/edluffy/.antigen'
 let g:netrw_dirhist_9='/Users/edluffy/.vim'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_6='/Users/edluffy/dotfiles'
 let g:netrw_dirhist_5='/Users/edluffy/dotfiles/vim/plugged/palenight.vim'
 let g:netrw_dirhist_4='/Users/edluffy/.vim'
 let g:netrw_dirhist_3='/Users/edluffy/Documents'
-let g:netrw_dirhist_2='/Users/edluffy/.vim'
