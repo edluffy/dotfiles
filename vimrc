@@ -15,7 +15,8 @@ endif
 let &t_ut=''
 set termguicolors
 
+set lazyredraw
 set number
-set cursorline
+set autoindent
 
 map <F8> :w <CR> :!make program="%:r" && ./"%:h" <CR>
