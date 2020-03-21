@@ -5,11 +5,18 @@ sudo -v
 if [ "$(uname)" == "Darwin" ]; then
 	echo -e "\n====== Starting Bootstrapping for Mac! ======\n"
 
-	if test ! $(which brew); then
-	  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	if [[ $1 == "--purge" ]]; then
+		brew remove --force $(brew list)
+		brew cask remove --force $(brew cask list)
+		echo "All packages removed"
+		exit 1
 	fi
 
-	#brew remove --force $(brew list) # optional purge
+	if test ! $(which brew); then
+		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	fi
+
+
 	brew doctor
 	brew update
 	brew bundle --no-lock --file packages/Brewfile

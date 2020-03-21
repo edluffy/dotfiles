@@ -16,4 +16,9 @@ set lazyredraw
 set number
 set autoindent
 
+set undodir=~/.vim/undodir
+set undofile
+
+set clipboard+=unnamed
+
 map <F8> :w <CR> :!make program="%:r" && ./"%:h" <CR>
