@@ -2,21 +2,21 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 
-# shell tools
+# shell
 brew "zsh"
 brew "tmux"
 brew "git"
 brew "wget"
 brew "python"
-brew "tree"
 
 # embedded / C tools
 brew "gcc"
-brew "avr-gcc"
-brew "avrdude" 
 brew "platformio"
 
-# fun!
+# misc tools
+brew "neofetch"
+brew "tree"
+brew "htop"
 brew "sl"
 
 # apps
