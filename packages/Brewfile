@@ -11,10 +11,9 @@ brew "python"
 
 # embedded / C tools
 brew "gcc"
-brew "platformio"
 
 # misc tools
-brew "neofetch"
+brew "archey"
 brew "tree"
 brew "htop"
 brew "sl"
@@ -30,3 +29,4 @@ cask "balenaetcher"
 cask "ltspice"
 cask "basictex"
 cask "notion"
+cask "alfred"

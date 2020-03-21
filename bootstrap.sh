@@ -19,7 +19,8 @@ if [ "$(uname)" == "Darwin" ]; then
 
 	brew doctor
 	brew update
-	brew bundle --no-lock --file packages/Brewfile
+	brew bundle --no-lock --file=packages/Brewfile
+	brew bundle --force cleanup --file=packages/Brewfile
 fi
 
 ################### LINUX SETUP ####################
@@ -35,5 +36,4 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 fi
 
 echo -e "\n====== Bootstrapping Finished! ======\n"
-echo
 echo "Enjoy - edluffy"
