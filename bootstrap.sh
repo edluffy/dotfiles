@@ -12,6 +12,11 @@ if [ "$(uname)" == "Darwin" ]; then
 		exit 1
 	fi
 
+	if [[ $1 == "--lsdeps" ]]; then
+		brew list -1 | while read cask; do echo -ne "\x1B[1;34m $cask \x1B[0m"; brew uses $cask --installed | awk '{printf(" %s ", $0)}'; echo ""; done
+		exit 1
+	fi
+
 	if test ! $(which brew); then
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
