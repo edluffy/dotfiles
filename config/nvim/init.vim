@@ -7,11 +7,10 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
 
-Plug 'neomake/neomake'
-"Plug 'dense-analysis/ale'
-"Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/deoplete-clangx'
+Plug 'dense-analysis/ale'
+Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-clangx'
 
 call plug#end()
 
