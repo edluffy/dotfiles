@@ -1,9 +1,8 @@
-# Ask for administrator passowrd
-sudo -v 
 
 ################### MAC SETUP ####################
 if [ "$(uname)" == "Darwin" ]; then
-	echo -e "\n====== Starting Bootstrapping for Mac! ======\n"
+	echo -e "\n====== Starting Package install for Mac! ======\n"
+	sudo -v 
 
 	if [[ $1 == "--purge" ]]; then
 		brew remove --force $(brew list)
@@ -28,17 +27,4 @@ if [ "$(uname)" == "Darwin" ]; then
 	brew bundle --force cleanup --file=packages/Brewfile
 fi
 
-################### LINUX SETUP ####################
-
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	echo -e "\n====== Starting Bootstrapping for Linux! ======\n"
-
-	sudo apt-get update
-	sudo apt-get upgrade
-	xargs -a packages/Aptfile sudo apt-get install
-
-	chsh -s /bin/zsh
-fi
-
-echo -e "\n====== Bootstrapping Finished! ======\n"
-echo "Enjoy - edluffy"
+echo -e "\n====== Finished, enjoy - edluffy ======\n"

@@ -3,10 +3,12 @@ tmux
 git
 wget
 python
-tree
+neovim
 
 gcc
-vim-gui-common
 
-sl
+archey
+tree
 htop
+sl
+

@@ -8,6 +8,7 @@ brew "tmux"
 brew "git"
 brew "wget"
 brew "python"
+brew "neovim"
 
 # embedded / C tools
 brew "gcc"
@@ -20,7 +21,6 @@ brew "sl"
 
 # apps
 cask "kitty"
-cask "macvim"
 cask "google-chrome"
 cask "spotify"
 cask "transmission"
