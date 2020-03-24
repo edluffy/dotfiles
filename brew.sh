@@ -25,6 +25,8 @@ if [ "$(uname)" == "Darwin" ]; then
 	brew update
 	brew bundle --no-lock --file=packages/Brewfile
 	brew bundle --force cleanup --file=packages/Brewfile
+
+	pip3 install pynvim
 fi
 
 echo -e "\n====== Finished, enjoy - edluffy ======\n"
