@@ -9,6 +9,9 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	xargs -a packages/Aptfile sudo apt-get install
 
 	chsh -s /bin/zsh
+
+	pip3 install pynvim
+	vim +PluginInstall +qall
 fi
 
 echo -e "\n====== Finished, enjoy - edluffy ======\n"
