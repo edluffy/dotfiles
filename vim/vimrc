@@ -1,12 +1,4 @@
-call plug#begin()
-
-Plug 'sheerun/vim-polyglot'
-Plug 'jiangmiao/auto-pairs'
-Plug 'dense-analysis/ale'
-Plug 'meck/ale-platformio'
-Plug 'ctrlpvim/ctrlp.vim'
-
-call plug#end()
+execute pathogen#infect()
 
 " Theming
 let g:material_theme_style = 'palenight'
@@ -29,6 +21,7 @@ set smarttab
 set clipboard+=unnamed
 
 " Sensible defaults for UI appearance
+syntax enable
 set termguicolors
 set laststatus=2
 set number
