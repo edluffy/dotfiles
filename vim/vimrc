@@ -3,6 +3,8 @@ execute pathogen#infect()
 " Theming
 let g:material_theme_style = 'palenight'
 colorscheme material
+
+syntax enable
 hi Normal guibg=NONE ctermbg=NONE
 
 " ALE setup
@@ -21,7 +23,6 @@ set smarttab
 set clipboard+=unnamed
 
 " Sensible defaults for UI appearance
-syntax enable
 set termguicolors
 set laststatus=2
 set number

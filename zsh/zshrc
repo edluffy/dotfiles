@@ -2,17 +2,19 @@ source ~/dotfiles/zsh/antigen.zsh
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
+antigen theme denysdovhan/spaceship-prompt
 
 antigen apply
 antigen cleanup
+
+ZSH_THEME="common"
 
 color-ssh(){
 	trap "printf '\x1b]11;#292D3E\x1b\\'" INT EXIT
 		printf '\x1b]11;#33384d\x1b\\'
 	ssh $*
 }
+
 
 compdef _ssh color-ssh=ssh
 alias ssh=color-ssh
