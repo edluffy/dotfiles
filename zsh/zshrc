@@ -8,12 +8,9 @@ antigen bundle sindresorhus/pure
 antigen apply
 antigen cleanup
 
-# Automatically begin tmux on terminal start
-if [ -z "$TMUX" ]; then; tmux attach -t TMUX || tmux new -s TMUX; fi
-
 color-ssh(){
 	trap "printf '\x1b]11;#292D3E\x1b\\'" INT EXIT
-		printf '\x1b]11;#15161F\x1b\\'
+		printf '\x1b]11;#33384d\x1b\\'
 	ssh $*
 }
 
@@ -23,9 +20,4 @@ alias ssh=color-ssh
 alias h='cd ~/'
 alias ls='ls -a -G'
 
-alias vi="nvim"
-alias vim="nvim"
-alias vimdiff='nvim -d'
-
-export EDITOR=nvim
 export TERM=xterm-256color

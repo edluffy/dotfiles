@@ -1,4 +1,3 @@
-
 ################### MAC SETUP ####################
 if [ "$(uname)" == "Darwin" ]; then
 	echo -e "\n====== Starting Package install for Mac! ======\n"
@@ -25,9 +24,6 @@ if [ "$(uname)" == "Darwin" ]; then
 	brew update
 	brew bundle --no-lock --file=packages/Brewfile
 	brew bundle --force cleanup --file=packages/Brewfile
-
-	pip3 install pynvim
-	vim +PluginInstall +qall
 fi
 
 echo -e "\n====== Finished, enjoy - edluffy ======\n"

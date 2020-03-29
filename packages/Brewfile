@@ -4,14 +4,15 @@ tap "homebrew/cask"
 
 # shell
 brew "zsh"
-brew "tmux"
 brew "git"
 brew "wget"
-brew "python"
-brew "neovim"
+brew "vim"
+brew "ripgrep"
 
 # embedded / C tools
 brew "gcc"
+brew "avr-gcc"
+brew "avrdude"
 
 # misc tools
 brew "archey"

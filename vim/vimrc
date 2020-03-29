@@ -1,0 +1,53 @@
+call plug#begin()
+
+Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
+Plug 'dense-analysis/ale'
+Plug 'meck/ale-platformio'
+Plug 'ctrlpvim/ctrlp.vim'
+
+call plug#end()
+
+" Theming
+let g:material_theme_style = 'palenight'
+colorscheme material
+hi Normal guibg=NONE ctermbg=NONE
+
+" ALE setup
+let g:ale_set_signs = 0
+
+" Use 'ripgrep' for CtrlP (if installed)
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+endif
+
+" Sensible defaults for writing text
+filetype plugin indent on
+set autoindent
+set backspace=indent,eol,start
+set smarttab
+set clipboard+=unnamed
+
+" Sensible defaults for UI appearance
+set termguicolors
+set laststatus=2
+set number
+set ruler
+set wildmenu
+
+" Tweaks to speedup vim
+set nowrap
+set nottyfast
+set lazyredraw
+set synmaxcol=180
+
+" CtrlP Mappings
+map ee :CtrlP ~<cr>
+map rr :CtrlP <cr>
+map ff :CtrlPLine <cr>
+
+" Easy navigation of splits
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
