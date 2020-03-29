@@ -7,9 +7,6 @@ colorscheme material
 syntax enable
 hi Normal guibg=NONE ctermbg=NONE
 
-" ALE setup
-let g:ale_set_signs = 0
-
 " Use 'ripgrep' for CtrlP (if installed)
 if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'

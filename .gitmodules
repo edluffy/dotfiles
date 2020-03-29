@@ -1,9 +1,3 @@
-[submodule "vim/bundle/ale"]
-	path = vim/bundle/ale
-	url = https://github.com/dense-analysis/ale.git
-[submodule "vim/bundle/ale-platformio"]
-	path = vim/bundle/ale-platformio
-	url = https://github.com/meck/ale-platformio.git
 [submodule "vim/bundle/vim-polyglot"]
 	path = vim/bundle/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
@@ -13,3 +7,9 @@
 [submodule "vim/bundle/auto-pairs"]
 	path = vim/bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule "vim/bundle/vim-markify"]
+	path = vim/bundle/vim-markify
+	url = https://github.com/dhruvasagar/vim-markify.git
+[submodule "vim/bundle/vim-dispatch"]
+	path = vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
