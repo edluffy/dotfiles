@@ -3,8 +3,10 @@ git
 wget
 vim
 ripgrep
+python
 
 gcc
+bear
 
 tree
 htop

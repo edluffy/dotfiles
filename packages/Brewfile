@@ -8,11 +8,13 @@ brew "git"
 brew "wget"
 brew "vim"
 brew "ripgrep"
+brew "python"
 
 # embedded / C tools
 brew "gcc"
 brew "avr-gcc"
 brew "avrdude"
+brew "bear"
 
 # misc tools
 brew "archey"
