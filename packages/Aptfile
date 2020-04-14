@@ -2,11 +2,11 @@ zsh
 git
 wget
 vim
+tmux
 ripgrep
 python
 
 gcc
-bear
 
 tree
 htop

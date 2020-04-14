@@ -1,44 +1,68 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+Plug 'urbainvaes/vim-tmux-pilot'
+Plug 'sheerun/vim-polyglot'
+
+Plug 'Raimondi/delimitMate'
+Plug 'junegunn/goyo.vim'
+Plug 'pgdouyon/vim-accio'
+Plug 'ludovicchabant/vim-gutentags'
+
+call plug#end()
 
 " Theming
 let g:material_theme_style = 'palenight'
 colorscheme material
 
-syntax enable
-hi Normal guibg=NONE ctermbg=NONE
+" Run make on save
+au Filetype c,cpp au BufWritePost <buffer> call AutoMake()
+function AutoMake()
+	sign define AccioError text=!! texthl=WarningMsg
+	sign define AccioWarning text=!! texthl=Todo
+	silent exec ':Accio gcc make'
+endfunc
 
-" Use 'ripgrep' for CtrlP (if installed)
-if executable('rg')
-  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
-endif
+imap <s-tab> <c-x><c-o>
+
+" Custom Status Line
+set statusline+=%<\ %f\ %m%r%y%w%=%l\/%-6L\ %3c
+set statusline+=%{ListJobs()}\ %{gutentags#statusline('[',']')}
+set statusline+=\ \ %{accio#statusline('Errors:\ %d')}
+function ListJobs()
+	let n=0 | for i in job_info() | let n+=1 | endfor | return "     Jobs: ".n
+endfunc
+
+" FZF Config
+set rtp+=/usr/local/opt/fzf
+let g:fzf_layout = { 'down': '20%' }
+
+let $FZF_DEFAULT_OPTS="--height=20% --color bg+:#343b51"
+let $FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
 
 " Sensible defaults for writing text
 filetype plugin indent on
 set autoindent
 set backspace=indent,eol,start
 set smarttab
-set clipboard+=unnamed
+set clipboard^=unnamed
+set completeopt-=preview
+set signcolumn=yes
 
 " Sensible defaults for UI appearance
+syntax enable
 set termguicolors
 set laststatus=2
 set number
 set ruler
 set wildmenu
+set termwinsize=10x0
 
-" Tweaks to speedup vim
-set nowrap
+" Tweaks to speed up vim
 set nottyfast
 set lazyredraw
 set synmaxcol=180
 
-" CtrlP Mappings
-map ee :CtrlP ~<cr>
-map rr :CtrlP <cr>
-map ff :CtrlPLine <cr>
-
-" Easy navigation of splits
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" FZF Mappings
+map ee :FZF ~<cr>
+map rr :FZF <cr>
+map ff :Lines <cr>

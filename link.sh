@@ -4,11 +4,12 @@ sudo -v
 sudo rm -rf ~/.config > /dev/null 2>&1
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
 sudo rm -rf ~/.vim > /dev/null 2>&1
+sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
 
 SYMLINKS=()
+
 # 'config' folder symlinks
 mkdir -p ~/.config
-
 sudo ln -sf ~/dotfiles/kitty ~/.config/kitty
 SYMLINKS+=('.config/kitty')
 sudo ln -sf ~/dotfiles/git ~/.config/git
@@ -19,6 +20,8 @@ sudo ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
 SYMLINKS+=('.zshrc')
 sudo ln -sf ~/dotfiles/vim ~/.vim
 SYMLINKS+=('.vim')
+sudo ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+SYMLINKS+=('.tmux.conf')
 
 echo ${SYMLINKS[@]}
 echo -e "\n====== Symlink Setup Finished! ======"
