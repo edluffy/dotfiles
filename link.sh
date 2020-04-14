@@ -20,7 +20,7 @@ sudo ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
 SYMLINKS+=('.zshrc')
 sudo ln -sf ~/dotfiles/vim ~/.vim
 SYMLINKS+=('.vim')
-sudo ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+sudo ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
 
 echo ${SYMLINKS[@]}
