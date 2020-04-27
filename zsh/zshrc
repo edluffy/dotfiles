@@ -5,26 +5,21 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle ael-code/zsh-colored-man-pages 
 antigen theme denysdovhan/spaceship-prompt
 
-
 antigen apply
 antigen cleanup
 
-color-ssh(){
-	trap "printf '\x1b]11;#292D3E\x1b\\'" INT EXIT
-		printf '\x1b]11;#33384d\x1b\\'
-	ssh $*
-}
-
-compdef _ssh color-ssh=ssh
-alias ssh=color-ssh
-
 alias h='cd ~/'
-alias ls='ls -a -G'
-alias vif='vi $(sk --reverse)'
-alias cdf='cd $(sk --reverse --height=5)'
-alias ht='tmux splitw -f -p 12 htop\; last-pane'
 
-export SKIM_DEFAULT_OPTIONS="--color=16,current_bg:#343b51 --prompt='λ ' --inline-info --height=20"
-export PATH="$PATH:$HOME/.skim/bin"
+if [ "$(uname 2> /dev/null)" != "Linux" ]; then
+	alias ls='ls -a -G'
+else 
+	alias ls='ls -a -color'
+fi
 
+# FZF Setup
+export PATH=~/.vim/plugged/fzf/bin:$PATH
+export FZF_DEFAULT_OPTS="--color=16 --height=20 --info=inline"
+source ~/.vim/plugged/fzf/shell/completion.zsh
+
+# True colors
 export TERM=xterm-256color

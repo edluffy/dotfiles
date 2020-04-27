@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
-Plug 'urbainvaes/vim-tmux-pilot'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 Plug 'Raimondi/delimitMate'
 
 Plug 'sheerun/vim-polyglot'
@@ -11,16 +11,6 @@ Plug 'maralla/completor.vim'
 Plug 'junegunn/goyo.vim', {'for': ['markdown', 'tex']}
 
 call plug#end()
-
-let g:skim_height=15
-
-" Completor settings
-let g:completor_completion_delay = 300
-let g:completor_complete_options = 'menuone,noselect,preview'
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-noremap <c-]> :call completor#do('definition')<CR>
 
 " Theming
 let g:material_theme_style = 'palenight'
@@ -71,7 +61,8 @@ set nottyfast
 set lazyredraw
 set synmaxcol=180
 
-" FZF Mappings
-map ee :SK ~<cr>
-map rr :SK <cr>
+" FZF Settings
+let g:fzf_height=15
+map ee :FZF ~<cr>
+map rr :FZF <cr>
 "map ff :Lines <cr>
