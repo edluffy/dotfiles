@@ -8,6 +8,7 @@ brew "git"
 brew "wget"
 brew "vim"
 brew "ripgrep"
+brew "fzf"
 brew "tmux"
 brew "python"
 

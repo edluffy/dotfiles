@@ -4,6 +4,7 @@ wget
 vim
 tmux
 ripgrep
+fzf
 python
 
 gcc

@@ -1,43 +1,52 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 Plug 'urbainvaes/vim-tmux-pilot'
-Plug 'sheerun/vim-polyglot'
-
 Plug 'Raimondi/delimitMate'
-Plug 'junegunn/goyo.vim'
+
+Plug 'sheerun/vim-polyglot'
 Plug 'pgdouyon/vim-accio'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'maralla/completor.vim'
+
+Plug 'junegunn/goyo.vim', {'for': ['markdown', 'tex']}
 
 call plug#end()
+
+let g:skim_height=15
+
+" Completor settings
+let g:completor_completion_delay = 300
+let g:completor_complete_options = 'menuone,noselect,preview'
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+noremap <c-]> :call completor#do('definition')<CR>
 
 " Theming
 let g:material_theme_style = 'palenight'
 colorscheme material
 
-" Run make on save
-au Filetype c,cpp au BufWritePost <buffer> call AutoMake()
-function AutoMake()
+set completeopt+=menuone,noselect
+set shortmess+=c
+
+au BufEnter * call FixSigns()
+function FixSigns()
 	sign define AccioError text=!! texthl=WarningMsg
 	sign define AccioWarning text=!! texthl=Todo
-	silent exec ':Accio gcc make'
 endfunc
 
-imap <s-tab> <c-x><c-o>
+" Run make on save
+au Filetype c,cpp au BufWrite * exec ':Accio gcc make clean ; make'
+map qq :Accio gcc make upload<cr>
+
 
 " Custom Status Line
 set statusline+=%<\ %f\ %m%r%y%w%=%l\/%-6L\ %3c
-set statusline+=%{ListJobs()}\ %{gutentags#statusline('[',']')}
-set statusline+=\ \ %{accio#statusline('Errors:\ %d')}
+set statusline+=%{ListJobs()}\ \ %{accio#statusline('Errors:\ %d')}
+
 function ListJobs()
 	let n=0 | for i in job_info() | let n+=1 | endfor | return "     Jobs: ".n
 endfunc
-
-" FZF Config
-set rtp+=/usr/local/opt/fzf
-let g:fzf_layout = { 'down': '20%' }
-
-let $FZF_DEFAULT_OPTS="--height=20% --color bg+:#343b51"
-let $FZF_DEFAULT_COMMAND='rg --hidden --no-ignore -l ""'
 
 " Sensible defaults for writing text
 filetype plugin indent on
@@ -55,7 +64,7 @@ set laststatus=2
 set number
 set ruler
 set wildmenu
-set termwinsize=10x0
+set splitright
 
 " Tweaks to speed up vim
 set nottyfast
@@ -63,6 +72,6 @@ set lazyredraw
 set synmaxcol=180
 
 " FZF Mappings
-map ee :FZF ~<cr>
-map rr :FZF <cr>
-map ff :Lines <cr>
+map ee :SK ~<cr>
+map rr :SK <cr>
+"map ff :Lines <cr>

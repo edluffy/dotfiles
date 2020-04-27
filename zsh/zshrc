@@ -5,6 +5,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle ael-code/zsh-colored-man-pages 
 antigen theme denysdovhan/spaceship-prompt
 
+
 antigen apply
 antigen cleanup
 
@@ -19,8 +20,11 @@ alias ssh=color-ssh
 
 alias h='cd ~/'
 alias ls='ls -a -G'
+alias vif='vi $(sk --reverse)'
+alias cdf='cd $(sk --reverse --height=5)'
+alias ht='tmux splitw -f -p 12 htop\; last-pane'
 
-
-alias vif='vi $(fzf-tmux -d 20%)'
+export SKIM_DEFAULT_OPTIONS="--color=16,current_bg:#343b51 --prompt='λ ' --inline-info --height=20"
+export PATH="$PATH:$HOME/.skim/bin"
 
 export TERM=xterm-256color
