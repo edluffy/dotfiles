@@ -1,4 +1,4 @@
-# taps
+ taps
 tap "homebrew/bundle"
 tap "homebrew/cask"
 
@@ -7,13 +7,14 @@ brew "zsh"
 brew "git"
 brew "wget"
 brew "vim"
-brew "ripgrep"
 brew "fzf"
 brew "tmux"
 brew "python"
 
 # embedded / C tools
 brew "gcc"
+brew "llvm"
+brew "bear"
 brew "avr-gcc"
 brew "avrdude"
 

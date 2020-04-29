@@ -3,13 +3,13 @@ git
 wget
 vim
 tmux
-ripgrep
 fzf
 python
 
 gcc
+llvm
+bear
 
 tree
 htop
 sl
-

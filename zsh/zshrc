@@ -13,13 +13,19 @@ alias h='cd ~/'
 if [ "$(uname 2> /dev/null)" != "Linux" ]; then
 	alias ls='ls -a -G'
 else 
-	alias ls='ls -a -color'
+	alias ls='ls -a --color'
 fi
 
+# Auto tmux
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+
 # FZF Setup
-export PATH=~/.vim/plugged/fzf/bin:$PATH
 export FZF_DEFAULT_OPTS="--color=16 --height=20 --info=inline"
 source ~/.vim/plugged/fzf/shell/completion.zsh
 
 # True colors
 export TERM=xterm-256color
+
+# Path exports
+export PATH=~/.vim/plugged/fzf/bin:$PATH
+export PATH=/usr/local/opt/llvm/bin:$PATH
