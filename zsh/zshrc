@@ -20,7 +20,7 @@ fi
 [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
 
 # FZF Setup
-export FZF_DEFAULT_OPTS="--color=16 --height=20 --info=inline"
+export FZF_DEFAULT_OPTS="--color=16 --height=20"
 source ~/.vim/plugged/fzf/shell/completion.zsh
 
 # True colors
