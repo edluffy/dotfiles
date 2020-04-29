@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim', {'for': ['markdown', 'tex']}
 
+
+Plug 'urbainvaes/vim-tmux-pilot'
+
 Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
 Plug 'pgdouyon/vim-accio'
