@@ -16,9 +16,6 @@ else
 	alias ls='ls -a --color'
 fi
 
-# Auto tmux
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session;}
-
 # FZF Setup
 export FZF_DEFAULT_OPTS="--color=16 --height=20"
 
