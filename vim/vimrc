@@ -1,47 +1,23 @@
 call plug#begin('~/.vim/plugged')
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/goyo.vim', {'for': ['markdown', 'tex']}
-
-
-Plug 'urbainvaes/vim-tmux-pilot'
-
-Plug 'Raimondi/delimitMate'
 Plug 'sheerun/vim-polyglot'
-Plug 'pgdouyon/vim-accio'
-
-Plug 'maralla/completor.vim'
-
+Plug 'natebosch/vim-lsc'
 call plug#end()
 
+set rtp+=/usr/local/opt/fzf
+
+let g:lsc_server_commands = {
+    \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
+    \ 'cpp': { 'command': 'clangd', 'suppress_stderr': v:true }}
+
+let g:lsc_auto_completeopt='menu,menuone,noinsert,noselect'
+let g:lsc_auto_map = v:true
+let g:lsc_reference_highlights = v:false
+let g:lsc_trace_level = 'off'
+highlight link lscDiagnosticError SpellBad
 
 " Theming
 let g:material_theme_style = 'palenight'
 colorscheme material
-
-" Completor
-if executable('clangd')
-	let g:completor_filetype_map = {}
-	let g:completor_filetype_map.cpp = {'ft': 'lsp', 'cmd': 'clangd'}
-	let g:completor_filetype_map.c = {'ft': 'lsp', 'cmd': 'clangd'}
-endif " (fallback to libclang completion)
-
-" Accio
-au BufEnter * call FixSigns()
-function FixSigns()
-        sign define AccioError text=!! texthl=WarningMsg
-        sign define AccioWarning text=!! texthl=Todo
-endfunc
-
-au Filetype c,cpp au BufWrite * exec ':Accio gcc make clean ; make'
-map qq :Accio gcc make upload<cr>
-
-" Custom Status Line
-set statusline+=%<\ %f\ %m%r%y%w%=%l\/%-6L\ %3c
-set statusline+=%{ListJobs()}\ \ %{accio#statusline('Errors:\ %d')}
-function ListJobs()
-	let n=0 | for i in job_info() | let n+=1 | endfor | return "     Jobs: ".n
-endfunc
 
 " Sensible defaults for writing text
 filetype plugin indent on
@@ -49,10 +25,9 @@ set autoindent
 set backspace=indent,eol,start
 set smarttab
 set clipboard^=unnamed
-set completeopt-=preview
-set completeopt+=menuone,noselect
 set signcolumn=yes
 set shortmess+=c
+set incsearch
 match WarningMsg /\%>80c/
 
 " Sensible defaults for UI appearance
@@ -75,8 +50,22 @@ map ee :FZF ~<cr>
 map rr :FZF <cr>
 "map ff :Lines <cr>
 
-" Splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" Brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+" Tab completion
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+" Pane movement
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l

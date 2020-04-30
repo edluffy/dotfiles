@@ -21,11 +21,9 @@ fi
 
 # FZF Setup
 export FZF_DEFAULT_OPTS="--color=16 --height=20"
-source ~/.vim/plugged/fzf/shell/completion.zsh
 
 # True colors
 export TERM=xterm-256color
 
 # Path exports
-export PATH=~/.vim/plugged/fzf/bin:$PATH
 export PATH=/usr/local/opt/llvm/bin:$PATH
