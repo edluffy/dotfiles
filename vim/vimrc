@@ -1,9 +1,7 @@
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
-Plug 'natebosch/vim-lsc'
 call plug#end()
-
-set rtp+=/usr/local/opt/fzf
 
 let g:lsc_server_commands = {
     \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
@@ -40,15 +38,14 @@ set wildmenu
 set splitright
 
 " Tweaks to speed up vim
-set nottyfast
-set lazyredraw
 set synmaxcol=180
 
 " FZF Settings
+set rtp+=/usr/local/opt/fzf
+set rtp+=/usr/share/doc/fzf/examples
 let g:fzf_height=15
 map ee :FZF ~<cr>
 map rr :FZF <cr>
-"map ff :Lines <cr>
 
 " Brackets
 inoremap " ""<left>
@@ -57,12 +54,6 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
-" Tab completion
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 " Pane movement
 noremap <C-h> <C-w>h

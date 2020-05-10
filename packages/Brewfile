@@ -18,6 +18,10 @@ brew "bear"
 brew "avr-gcc"
 brew "avrdude"
 
+# web dev tools
+brew "nodejs"
+
+
 # misc tools
 brew "archey"
 brew "tree"
