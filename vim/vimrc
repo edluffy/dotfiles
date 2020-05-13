@@ -1,11 +1,12 @@
 call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'sheerun/vim-polyglot'
+Plug 'natebosch/vim-lsc'
 call plug#end()
 
 let g:lsc_server_commands = {
-    \ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
-    \ 'cpp': { 'command': 'clangd', 'suppress_stderr': v:true }}
+	\ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
+	\ 'cpp': { 'command': 'clangd', 'suppress_stderr': v:true }}
 
 let g:lsc_auto_completeopt='menu,menuone,noinsert,noselect'
 let g:lsc_auto_map = v:true
@@ -39,6 +40,7 @@ set splitright
 
 " Tweaks to speed up vim
 set synmaxcol=180
+set updatetime=300
 
 " FZF Settings
 set rtp+=/usr/local/opt/fzf
@@ -54,9 +56,3 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
-
-" Pane movement
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l

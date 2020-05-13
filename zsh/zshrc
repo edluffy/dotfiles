@@ -1,5 +1,7 @@
 source ~/dotfiles/zsh/antigen.zsh
 
+antigen bundle tmux-plugins/tmux-cpu
+
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle ael-code/zsh-colored-man-pages 
@@ -18,6 +20,8 @@ fi
 
 # FZF Setup
 export FZF_DEFAULT_OPTS="--color=16 --height=20"
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+
 
 # True colors
 export TERM=xterm-256color
