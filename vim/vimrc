@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'sheerun/vim-polyglot'
 Plug 'natebosch/vim-lsc'
 call plug#end()
@@ -56,3 +55,9 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
+
+" Navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
