@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'natebosch/vim-lsc'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let g:lsc_server_commands = {
@@ -26,7 +27,6 @@ set clipboard^=unnamed
 set signcolumn=yes
 set shortmess+=c
 set incsearch
-match WarningMsg /\%>80c/
 
 " Sensible defaults for UI appearance
 syntax enable
@@ -61,3 +61,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+nnoremap <tab> :tabnext<cr>
+nnoremap <s-tab> :tabprevious<cr>

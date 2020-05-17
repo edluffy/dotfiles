@@ -1,6 +1,7 @@
 source ~/dotfiles/zsh/antigen.zsh
 
 antigen bundle tmux-plugins/tmux-cpu
+antigen bundle tmux-plugins/tmux-resurrect
 
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -11,6 +12,8 @@ antigen apply
 antigen cleanup
 
 alias h='cd ~/'
+alias srczsh='source ~/.zshrc && tmux respawn-pane -k'
+alias srctmux='tmux source ~/.tmux.conf'
 
 if [ "$(uname 2> /dev/null)" != "Linux" ]; then
 	alias ls='ls -a -G'
