@@ -12,9 +12,12 @@ antigen apply
 antigen cleanup
 
 alias h='cd ~/'
+if [ -x "$(command -v nvim)" ]; then alias vi='nvim'; fi
+
 alias srczsh='source ~/.zshrc && tmux respawn-pane -k'
 alias srctmux='tmux source ~/.tmux.conf'
 
+# Use ls with color + hidden files
 if [ "$(uname 2> /dev/null)" != "Linux" ]; then
 	alias ls='ls -a -G'
 else 
@@ -24,7 +27,6 @@ fi
 # FZF Setup
 export FZF_DEFAULT_OPTS="--color=16 --height=20"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
-
 
 # True colors
 export TERM=xterm-256color
