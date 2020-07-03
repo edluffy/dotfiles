@@ -1,4 +1,5 @@
 ################### MAC SETUP ####################
+
 if [ "$(uname)" == "Darwin" ]; then
 	echo -e "\n====== Starting Package install for Mac! ======\n"
 	sudo -v 

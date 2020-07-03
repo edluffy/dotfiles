@@ -6,30 +6,24 @@ antigen bundle tmux-plugins/tmux-resurrect
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle ael-code/zsh-colored-man-pages 
+
 antigen theme denysdovhan/spaceship-prompt
 
 antigen apply
-antigen cleanup
 
+# Aliases
 alias h='cd ~/'
-if [ -x "$(command -v nvim)" ]; then alias vi='nvim'; fi
+alias zshr='source ~/.zshrc && tmux respawn-pane -k'
+alias tmuxr='tmux source ~/.tmux.conf'
 
-alias srczsh='source ~/.zshrc && tmux respawn-pane -k'
-alias srctmux='tmux source ~/.tmux.conf'
+[ -x "$(command -v nvim)" ] && alias vi='nvim'
+[ "$(uname 2> /dev/null)" != "Linux" ] && alias ls='ls -a -G' || alias ls='ls -a --color'
 
-# Use ls with color + hidden files
-if [ "$(uname 2> /dev/null)" != "Linux" ]; then
-	alias ls='ls -a -G'
-else 
-	alias ls='ls -a --color'
-fi
-
-# FZF Setup
-export FZF_DEFAULT_OPTS="--color=16 --height=20"
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
-
-# True colors
+# True colors + Prompt
 export TERM=xterm-256color
+export SPACESHIP_USER_SHOW=always
 
-# Path exports
-export PATH=/usr/local/opt/llvm/bin:$PATH
+# FZF
+export FZF_DEFAULT_OPTS='--color=16 --height=20'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

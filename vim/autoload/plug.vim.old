@@ -942,7 +942,6 @@ function! s:do(pull, force, todo)
         endif
       elseif type == s:TYPE.funcref
         try
-          call s:load_plugin(spec)
           let status = installed ? 'installed' : (updated ? 'updated' : 'unchanged')
           call spec.do({ 'name': name, 'status': status, 'force': a:force })
         catch

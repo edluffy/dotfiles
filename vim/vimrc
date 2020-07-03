@@ -1,7 +1,9 @@
 call plug#begin('~/.vim/plugged')
+
 Plug 'sheerun/vim-polyglot'
 Plug 'natebosch/vim-lsc'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+
 call plug#end()
 
 let g:lsc_server_commands = {
@@ -36,17 +38,18 @@ set number
 set ruler
 set wildmenu
 set splitright
+highlight EndOfBuffer guifg=bg
 
 " Tweaks to speed up vim
 set synmaxcol=180
 set updatetime=300
 
-" FZF Settings
-set rtp+=/usr/local/opt/fzf
-set rtp+=/usr/share/doc/fzf/examples
-let g:fzf_height=15
-map ee :FZF ~<cr>
-map rr :FZF <cr>
+" Leader key mappings
+let mapleader = "'"
+map <leader><leader> :source $MYVIMRC<cr>
+map <leader>x :LSClientDisable<cr>
+map <leader>e :FZF ~<cr>
+map <leader>r :FZF<cr>
 
 " Brackets
 inoremap " ""<left>
@@ -55,6 +58,13 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
+
+" Surround
+vnoremap <silent> ( xi()<esc>P
+vnoremap <silent> [ xi[]<esc>P
+vnoremap <silent> { xi{}<esc>P
+vnoremap <silent> ' xi''<esc>P
+vnoremap <silent> " xi""<esc>P
 
 " Navigation
 nnoremap <C-J> <C-W><C-J>
