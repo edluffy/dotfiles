@@ -3,8 +3,6 @@ zsh
 tmux
 git
 
-fzf
 ripgrep
-bear
 tree
 htop

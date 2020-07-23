@@ -1,24 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
-Plug 'natebosch/vim-lsc'
-Plug 'junegunn/fzf'
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
-
-let g:lsc_server_commands = {
-	\ 'c': { 'command': 'clangd', 'suppress_stderr': v:true },
-	\ 'cpp': { 'command': 'clangd', 'suppress_stderr': v:true }}
-
-let g:lsc_auto_completeopt='menu,menuone,noinsert,noselect'
-let g:lsc_auto_map = v:true
-let g:lsc_reference_highlights = v:false
-let g:lsc_trace_level = 'off'
-highlight link lscDiagnosticError SpellBad
-
-" Theming
-let g:material_theme_style = 'palenight'
-colorscheme material
 
 " Sensible defaults for writing text
 filetype plugin indent on
@@ -40,6 +25,10 @@ set wildmenu
 set splitright
 highlight EndOfBuffer guifg=bg
 
+" Theming
+let g:material_theme_style = 'palenight'
+colorscheme material
+
 " Tweaks to speed up vim
 set synmaxcol=180
 set updatetime=300
@@ -47,9 +36,6 @@ set updatetime=300
 " Leader key mappings
 let mapleader = "'"
 map <leader><leader> :source $MYVIMRC<cr>
-map <leader>x :LSClientDisable<cr>
-map <leader>e :FZF ~<cr>
-map <leader>r :FZF<cr>
 
 " Brackets
 inoremap " ""<left>
@@ -71,6 +57,3 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-nnoremap <tab> :tabnext<cr>
-nnoremap <s-tab> :tabprevious<cr>
