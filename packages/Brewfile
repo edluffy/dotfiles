@@ -1,4 +1,4 @@
- taps
+# taps
 tap "homebrew/bundle"
 tap "homebrew/cask"
 
@@ -7,7 +7,6 @@ brew "zsh"
 brew "git"
 brew "wget"
 brew "vim"
-brew "fzf"
 brew "tmux"
 brew "python"
 
@@ -21,7 +20,6 @@ brew "avrdude"
 # web dev tools
 brew "nodejs"
 
-
 # misc tools
 brew "archey"
 brew "tree"
@@ -29,13 +27,13 @@ brew "htop"
 brew "sl"
 
 # apps
-cask "kitty"
-cask "google-chrome"
-cask "spotify"
-cask "transmission"
-cask "visual-studio-code"
-cask "balenaetcher"
-cask "ltspice"
-cask "basictex"
-cask "notion"
-cask "alfred"
+#cask "kitty"
+#cask "google-chrome"
+#cask "spotify"
+#cask "transmission"
+#cask "visual-studio-code"
+#cask "balenaetcher"
+#cask "ltspice"
+#cask "basictex"
+#cask "notion"
+#cask "alfred"

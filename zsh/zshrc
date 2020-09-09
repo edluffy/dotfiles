@@ -22,3 +22,5 @@ alias tmuxr='tmux source ~/.tmux.conf'
 # True colors + Prompt
 export TERM=xterm-256color
 export SPACESHIP_USER_SHOW=always
+
+export PATH=$PATH:~/.dotnet

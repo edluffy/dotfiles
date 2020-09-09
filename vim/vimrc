@@ -1,9 +1,9 @@
 call plug#begin('~/.vim/plugged')
-
-Plug 'sheerun/vim-polyglot'
-Plug 'ludovicchabant/vim-gutentags'
-
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-git', 'coc-lists', 'coc-yank']
 
 " Sensible defaults for writing text
 filetype plugin indent on
@@ -22,28 +22,63 @@ set laststatus=2
 set number
 set ruler
 set wildmenu
+set undofile
 set splitright
-highlight EndOfBuffer guifg=bg
+match CursorLineNr '\%>80v.\+'
 
 " Theming
 let g:material_theme_style = 'palenight'
+let g:material_terminal_italics = 1
 colorscheme material
+highlight EndOfBuffer guifg=bg
+
+if filereadable('/usr/local/opt/llvm/bin/clangd')
+  call coc#config('clangd.path', '/usr/local/opt/llvm/bin/clangd')
+endif
+
+highlight CocErrorSign guifg=#ff5370 ctermfg=203
+highlight CocHintSign guifg=#82ddff ctermfg=111
+highlight CocInfoSign guifg=#ffcb6b ctermfg=11
+call coc#config('diagnostic.errorSign', 'ⓧ ')
+call coc#config('diagnostic.hintSign', 'ⓘ ')
+call coc#config('diagnostic.infoSign', 'ⓘ ')
+
+" + Tags, omnifunc, git changes, lsp status
+set statusline=%f\ %h%w%m%r
+set statusline+=%=%-14.(%l,%c%V%)
+set statusline+=%#Title#
+set statusline+=%{get(b:,'coc_git_status','')}
+
+"filter name lua print(vim.inspect(vim.lsp.buf_get_clients()))
 
 " Tweaks to speed up vim
 set synmaxcol=180
 set updatetime=300
 
 " Leader key mappings
-let mapleader = "'"
+let mapleader = "\<Space>"
 map <leader><leader> :source $MYVIMRC<cr>
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+map <leader>r <Plug>(coc-rename)
+map <leader>g :CocList grep<cr>
+map <leader>n :call CocAction('diagnosticNext')<cr>
+map <leader>p :call CocAction('diagnosticPrevious')<cr>
 
-" Brackets
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Coc
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Surround
 vnoremap <silent> ( xi()<esc>P
@@ -51,6 +86,15 @@ vnoremap <silent> [ xi[]<esc>P
 vnoremap <silent> { xi{}<esc>P
 vnoremap <silent> ' xi''<esc>P
 vnoremap <silent> " xi""<esc>P
+
+" Text Objects
+xnoremap <silent> il :<c-u>normal! g_v^<cr>
+onoremap <silent> il :<c-u>normal! g_v^<cr>
+xnoremap <silent> al :<c-u>normal! $v0<cr>
+onoremap <silent> al :<c-u>normal! $v0<cr>
+
+xnoremap <silent> id :<c-u>normal! G$Vgg0<cr>
+onoremap <silent> id :<c-u>normal! GVgg<cr>
 
 " Navigation
 nnoremap <C-J> <C-W><C-J>

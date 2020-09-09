@@ -1,7 +1,5 @@
-################### LINUX SETUP ####################
-
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	echo -e "\n====== Starting Package install for Linux! ======\n"
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	echo -e "$(tput bold)$(tput setaf 5)  Dotfiles: $(tput setaf 2)apt.sh starting package install for linux-gnu."
 	sudo -v 
 
 	sudo apt-get update
@@ -9,6 +7,8 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	xargs -a packages/Aptfile sudo apt-get install
 
 	chsh -s /bin/zsh
-fi
+	echo -e "$(tput bold)$(tput setaf 5)  Dotfiles: $(tput setaf 2)apt.sh finished installing packages"
 
-echo -e "\n====== Finished, enjoy - edluffy ======\n"
+else
+	echo -e "$(tput bold)$(tput setaf 5)  Dotfiles: $(tput setaf 3)apt.sh exited, system is not linux-gnu."
+fi
