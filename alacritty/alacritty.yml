@@ -1,16 +1,13 @@
 TERM: alacritty
 
 window:
-    decorations: "none"
+  decorations: buttonless
+  dynamic_padding: true
 
 colors:
   primary:
     background: '0x292d3e'
     foreground: '0x959dcb'
-
-  cursor:
-    text: '0x292d3e'
-    cursor: '0x959dcb'
 
   normal:
     black:   '0x292d3e'
@@ -34,7 +31,7 @@ colors:
 
 font:
   normal:
-    family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font
     style: Regular
 
   italic:
