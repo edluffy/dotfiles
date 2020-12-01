@@ -1,6 +1,11 @@
 # dotfiles
 🍙 My dev environment + custom setup scripts for macOS - vim, zsh, tmux, alacritty, homebrew.
 
+<p float="left">
+  <img src="/screenshots/s1.png?raw=True" width="60%" />
+  <img src="/screenshots/s2.png?raw=True" width="39%" /> 
+</p>
+
 ## Vim
 Config works for both Vim and Neovim (the latter is preferred - vi is aliased to nvim if available).
 Using [vim-plug](https://github.com/junegunn/vim-plug) as plugin manager.
