@@ -4,25 +4,21 @@ sudo -v
 sudo rm -rf ~/.config/alacritty > /dev/null 2>&1
 sudo rm -rf ~/.config/nvim > /dev/null 2>&1
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
-sudo rm -rf ~/.vim > /dev/null 2>&1
 sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
 
 SYMLINKS=()
 
 mkdir -p ~/.config
-mkdir -p ~/.config/nvim
 
 # 'config' folder symlinks
 sudo ln -sf ~/dotfiles/alacritty ~/.config/alacritty
 SYMLINKS+=('.config/alacritty')
-sudo ln -sf ~/dotfiles/vim/init.vim ~/.config/nvim/init.vim
-SYMLINKS+=('.config/nvim/init.vim')
+sudo ln -sf ~/dotfiles/nvim ~/.config/nvim
+SYMLINKS+=('.config/nvim')
 
 # 'home' folder symlinks
 sudo ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
 SYMLINKS+=('.zshrc')
-sudo ln -sf ~/dotfiles/vim ~/.vim
-SYMLINKS+=('.vim')
 sudo ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
 

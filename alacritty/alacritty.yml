@@ -31,19 +31,20 @@ colors:
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font
-    style: Regular
+    family: RobotoMono Nerd Font
+    style: Light
 
   italic:
-    family: Hack Nerd Font
-    style: Italic
+    family: RobotoMono Nerd Font
+    style: Light Italic
 
   bold:
-    family: Hack Nerd Font
+    family: RobotoMono Nerd Font
     style: Bold
 
   bold_italic:
-    family: Hack Nerd Font
+    family: RobotoMono Nerd Font
     style: Bold Italic
 
+  size: 12
   use_thin_strokes: true

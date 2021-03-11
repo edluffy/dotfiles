@@ -1,2 +1,1 @@
-vim/plugged/**
-vim/.netrwhist
+nvim/plugin/**

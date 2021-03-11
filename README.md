@@ -1,19 +1,15 @@
 # dotfiles
-🍙 My dev environment + custom setup scripts for macOS - vim, zsh, tmux, alacritty, homebrew.
+🍙 My dev environment + custom setup scripts for macOS - nvim, zsh, tmux, alacritty, homebrew.
 
-## Vim
-Config works for both Vim and Neovim (the latter is preferred - vi is aliased to nvim if available).
-Using [vim-plug](https://github.com/junegunn/vim-plug) as plugin manager.
+## Neovim
+Switched to full lua Neovim 0.5 only config, vi is aliased to nvim.
+Using [packer.nvim](https://github.com/wbthomason/packer.nvim) as plugin manager.
 
-### [goyo.vim](https://github.com/junegunn/goyo.vim)
-### [coc.nvim](https://github.com/neoclide/coc.nvim)
-Provides asynchronous code completion and linting, with fully featured LSP support + much more. Turns vim into a lightweight IDE. Extensions:
-- [coc-clangd](https://github.com/clangd/coc-clangd)
-- [coc-pyright](https://github.com/fannheyward/coc-pyright)
-- [coc-texlab](https://github.com/fannheyward/coc-texlab)
-- [coc-git](https://github.com/neoclide/coc-git)
-- [coc-lists](https://github.com/neoclide/coc-lists)
-- [coc-yank](https://github.com/neoclide/coc-yank)
+### [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+Awesome fuzzy finder with live preview. Has builtin support for Files, Git, LSP and Treesitter sources.
+### [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+Switched away from coc.nvim to Neovim's lightweight built-in language server client. Plugin provides common LSP configurations.
+- Using [nvim-compe](https://github.com/hrsh7th/nvim-compe) for autocomplete popups
 
 ## Zsh
 Using [antigen](https://github.com/zsh-users/antigen) as plugin manager.
