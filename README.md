@@ -1,6 +1,11 @@
 # dotfiles
 🍙 My dev environment + custom setup scripts for macOS - nvim, zsh, tmux, alacritty, homebrew.
 
+<p float="left">
+  <img src="/screenshots/s1.png?raw=True" width="60%" />
+  <img src="/screenshots/s2.png?raw=True" width="39%" /> 
+</p>
+
 ## Neovim
 Switched to full lua Neovim 0.5 only config, vi is aliased to nvim.
 Using [packer.nvim](https://github.com/wbthomason/packer.nvim) as plugin manager.
