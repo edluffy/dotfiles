@@ -1,7 +1,7 @@
 sudo -v 
 
 # Delete old dotfiles
-sudo rm -rf ~/.config/alacritty > /dev/null 2>&1
+sudo rm -rf ~/.config/kitty > /dev/null 2>&1
 sudo rm -rf ~/.config/nvim > /dev/null 2>&1
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
 sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
@@ -11,8 +11,8 @@ SYMLINKS=()
 mkdir -p ~/.config
 
 # 'config' folder symlinks
-sudo ln -sf ~/dotfiles/alacritty ~/.config/alacritty
-SYMLINKS+=('.config/alacritty')
+sudo ln -sf ~/dotfiles/kitty ~/.config/kitty
+SYMLINKS+=('.config/kitty')
 sudo ln -sf ~/dotfiles/nvim ~/.config/nvim
 SYMLINKS+=('.config/nvim')
 

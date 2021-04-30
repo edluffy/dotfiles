@@ -24,3 +24,4 @@ export TERM=xterm-256color
 export SPACESHIP_USER_SHOW=always
 
 export PATH=$PATH:~/.dotnet
+export PATH=$PATH:/Users/edluffy/.cargo/bin
