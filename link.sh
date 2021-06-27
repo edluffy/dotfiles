@@ -4,6 +4,7 @@ sudo -v
 sudo rm -rf ~/.config/kitty > /dev/null 2>&1
 sudo rm -rf ~/.config/nvim > /dev/null 2>&1
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
+sudo rm -rf ~/.bashrc > /dev/null 2>&1
 sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
 
 SYMLINKS=()
@@ -17,8 +18,10 @@ sudo ln -sf ~/dotfiles/nvim ~/.config/nvim
 SYMLINKS+=('.config/nvim')
 
 # 'home' folder symlinks
-sudo ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
+sudo ln -sf ~/dotfiles/shell/zshrc ~/.zshrc
 SYMLINKS+=('.zshrc')
+sudo ln -sf ~/dotfiles/shell/bashrc ~/.bashrc
+SYMLINKS+=('.bashrc')
 sudo ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
 

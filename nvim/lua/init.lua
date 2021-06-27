@@ -11,19 +11,14 @@ end
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
 require('packer').startup(function()
     use {'wbthomason/packer.nvim', opt = true}
-    use {'kyazdani42/nvim-web-devicons'}
 
     -- Theming
     use {'marko-cerovac/material.nvim'}
-    use {'ayu-theme/ayu-vim'}
-    use {'junegunn/goyo.vim'}
+    use {'folke/zen-mode.nvim'}
 
     -- LSP
     use {'neovim/nvim-lspconfig'}
     use {'hrsh7th/nvim-compe'}
-    use {'tjdevries/nlua.nvim'}
-    use {'folke/lsp-trouble.nvim'}
-    use {'onsails/lspkind-nvim'}
 
     -- TS
     use {'nvim-treesitter/nvim-treesitter'}
@@ -33,25 +28,21 @@ require('packer').startup(function()
     use {'nvim-telescope/telescope.nvim',
         requires = {'nvim-lua/popup.nvim', 
                     'nvim-lua/plenary.nvim'}}
-    use {'kyazdani42/nvim-tree.lua'}
-    use {'hoob3rt/lualine.nvim'}
-    use {'akinsho/nvim-bufferline.lua'}
-    --use {'glepnir/dashboard-nvim'}
 
     use {'lewis6991/gitsigns.nvim',
         requires = 'nvim-lua/plenary.nvim'}
 
     -- Local plugins
-    use {'~/Dev/specs'}
-    use {'~/Dev/hologram'}
+    use {'~/Dropbox/Projects/specs.nvim'}
+    use {'~/Dropbox/Projects/hologram'}
 end)
+
+vim.g.markdown_fenced_languages = {'python', 'c', 'cpp', 'lua'}
 
 --[[ OPTIONS ]]--
 vim.cmd('set background=dark')
 vim.o.termguicolors = true
 vim.cmd[[ au TextYankPost * silent! lua vim.highlight.on_yank()]]
---vim.cmd('colorscheme material')
---vim.cmd('let ayucolor="light"')
 
 vim.g.material_style = 'palenight'
 vim.g.material_italic_comments = true
@@ -61,15 +52,12 @@ require('material').set()
 
 vim.cmd('highlight EndOfBuffer guifg=bg') -- hide tildes
 
-
 vim.cmd('set noshowcmd')
 vim.cmd('set tabstop=4')
 vim.cmd('set shiftwidth=0')
 vim.cmd('set expandtab')
 
 vim.bo.expandtab = true
---vim.bo.tabstop = 4
---vim.bo.shiftwidth = 0 -- auto indent by tabstop
 vim.bo.undofile = true
 vim.wo.signcolumn = "yes" -- always show signcolumn
 vim.wo.number = true
@@ -87,7 +75,6 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
-vim.cmd [[ hi TreesitterContext cterm=bold,reverse guifg=#A7ADCD guibg=#343B51 ]]
 
 -- LSP
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -103,13 +90,20 @@ vim.fn.sign_define("LspDiagnosticsSignHint",
                    {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"})
 
 require'lspconfig'.pyright.setup{}
-require'lspconfig'.texlab.setup{}
+require'lspconfig'.texlab.setup{
+    settings = {
+        latex = {
+            build = {
+                args = { "%f", "--synctex", "--keep-logs", "--keep-intermediates", },
+                executable = "tectonic",
+                onSave = true
+            },
+        },
+    },
+}
 require'lspconfig'.clangd.setup{
     cmd = { "/usr/local/Cellar/llvm/11.1.0/bin/clangd", "--background-index" }
 }
-require('nlua.lsp.nvim').setup(require('lspconfig'), {
-    on_attach = custom_nvim_lspconfig_attach,
-})
 
 require'compe'.setup {
     enabled = true;
@@ -139,52 +133,7 @@ require'compe'.setup {
     };
 }
 
-require('trouble').setup{
-    auto_open = true,
-    auto_close = true,
-    auto_preview = true,
-    use_lsp_diagnostic_signs = true,
-}
-
-require('lspkind').init{}
-
--- Navigation
-require('lualine').setup{
-  options = {theme = 'nightfly'}
-}
-
-vim.g.nvim_tree_auto_open = 1
-vim.g.nvim_tree_auto_close = 1
-vim.g.nvim_tree_follow = 1
-vim.g.nvim_tree_lsp_diagnostics = 1
-
 require('gitsigns').setup{}
-
-require'bufferline'.setup{}
-
--- vim.cmd('au FileType au BufReadPost dashboard hi! link DashboardHeader Function')
--- vim.g.dashboard_custom_header = {
--- [[                                    _,,                                      ]],
--- [[                                  ,iSMP                                  ,dW ]],
--- [[                                 sPT1Y'                                 JIl; ]],
--- [[                                sIl:l1                                 JWS:' ]],
--- [[                               dIi:Il;                                fWIl?  ]],
--- [[                              dIi:l:I'                               fW1"    ]],
--- [[                             dIli:l:I;                              fWI:     ]],
--- [[                           .dIli:I:S:S                     .       fWIl`     ]],
--- [[                         ,sWSSIIIiISIIS w,_             .sMW     ,MWIl;      ]],
--- [[                    _.,sWWWWWWMMMSSSWWMMMWWMmMmu,,._  .iSYISb, ,MM*SI!:      ]],
--- [[                _,sYYMMWWWWWsdMMMMWWMMiM"*MW*MWWWMWMbWMMS WWPWWMWIIS1!`      ]],
--- [[           _,osMMMMMYYWWMmMWWWWWWWb`SWMMImMMMMSISIISWWSISIPWWWWSIIIII!.      ]],
--- [[        .osSMWMWWWWSI111MMPSSSbWWSWWISIIMSYYiIIIII!IlI1Ii,ui:W*1:li:l1!      ]],
--- [[     ,sSMMWWWSSSSSSWWbdWWWWWWYSbiSSWWIlIM711IIil1II1!I'l:+'+l; `''+1i:1i     ]],
--- [[  ,sYSMWMWYWWWSSSSSWWWSSIIiWWWWWY11WWIIIbM?!liI?l:i,         `      `'1!:    ]],
--- [[ sPITMWMWWWMMwwdWWbbYYIIiYYTTWW1!1IIISIWWMmm+?+ `+Ili                 `'l:,  ]],
--- [[ YIi1lTYfPSkyLinedI!YYI!iYYTT!11IIISWWMMMMMmm,                               ]],
--- [[   "T1l1lI**lMMW2006?mMWo?*'``  ```""**YSWMMMWMm,                            ]],
--- [[        "*:iil1I!I!"` '                 ``"*YMMWWMm,                         ]],
--- [[              ii!                             '*YMWM,                        ]],
--- [[              I'                                  "YM                        ]], }
 
 -- Local Plugins
 require('hologram').setup{}
@@ -223,5 +172,5 @@ map('<C-L>', '<C-W><C-L>')
 
 map('<space>r',  ":lua require('keymaps').reload_lua_package()<cr>")
 
-map('<space>w',  ":lua require('hologram').show_images()<cr>")
-map('<space>q',  ":lua require('hologram').gen_inline_md()<cr>")
+map('<space>w',  ":lua hologram_test()<cr>")
+map('<space>q',  ":lua require('hologram').gen_images()<cr>")

@@ -1,0 +1,5 @@
+# Aliases
+[ -x "$(command -v nvim)" ] && alias vi='nvim'
+[ "$(uname 2> /dev/null)" != "Linux" ] && alias ls='ls -a -G' || alias ls='ls -a --color'
+
+export EDITOR='nvim'
