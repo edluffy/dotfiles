@@ -89,7 +89,7 @@ vim.fn.sign_define("LspDiagnosticsSignInformation",
 vim.fn.sign_define("LspDiagnosticsSignHint",
                    {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"})
 
-require'lspconfig'.pyright.setup{}
+--require'lspconfig'.pyright.setup{}
 require'lspconfig'.texlab.setup{
     settings = {
         latex = {
