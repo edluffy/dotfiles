@@ -2,10 +2,10 @@
 vim.cmd [[packadd packer.nvim]]
 
 -- Auto install packer.nvim if not installed
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.cmd [['!git clone https://github.com/wbthomason/packer.nvim '..install_path ]]
-    vim.cmd [[ packadd packer.nvim ]]
+    vim.fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd('packadd packer.nvim')
 end
 
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
@@ -19,6 +19,7 @@ require('packer').startup(function()
     -- LSP
     use {'neovim/nvim-lspconfig'}
     use {'hrsh7th/nvim-compe'}
+    use {'ray-x/lsp_signature.nvim'}
 
     -- TS
     use {'nvim-treesitter/nvim-treesitter'}
@@ -33,8 +34,9 @@ require('packer').startup(function()
         requires = 'nvim-lua/plenary.nvim'}
 
     -- Local plugins
-    use {'~/Dropbox/Projects/specs.nvim'}
-    use {'~/Dropbox/Projects/hologram'}
+    --use {'~/Dropbox/Projects/specs.nvim'}
+    use {'edluffy/hologram.nvim'}
+    --use {'~/hologram'}
 end)
 
 vim.g.markdown_fenced_languages = {'python', 'c', 'cpp', 'lua'}
@@ -76,9 +78,28 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+require'nvim-treesitter.configs'.setup{
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["sa"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["sA"] = "@parameter.inner",
+      },
+    },
+  },
+}
+
+
 -- LSP
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      underline = false,
+      update_in_insert = false
+  }
 )
 vim.fn.sign_define("LspDiagnosticsSignError",
                    {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"})
@@ -89,7 +110,11 @@ vim.fn.sign_define("LspDiagnosticsSignInformation",
 vim.fn.sign_define("LspDiagnosticsSignHint",
                    {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"})
 
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.pyright.setup{
+    on_attach = function(client, bufnr)
+        require'lsp_signature'.on_attach({ floating_window = false, })
+    end,
+}
 require'lspconfig'.texlab.setup{
     settings = {
         latex = {
@@ -137,7 +162,7 @@ require('gitsigns').setup{}
 
 -- Local Plugins
 require('hologram').setup{}
-require('specs').setup{}
+--require('specs').setup{}
 
 -- Mappings
 vim.g.mapleader = " "

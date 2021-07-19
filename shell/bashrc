@@ -1,4 +1,10 @@
 [ -f $HOME/dotfiles/shell/shellrc ] && . $HOME/dotfiles/shell/shellrc
+
+if [ -t 1 ]; then
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+fi
+
 # BASH prompt
 git_branch() { git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' ; }
 PS1="\[\e[0;93m\]\u\[\e[m\] " # username
