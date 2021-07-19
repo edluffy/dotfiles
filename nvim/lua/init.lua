@@ -115,6 +115,7 @@ require'lspconfig'.pyright.setup{
         require'lsp_signature'.on_attach({ floating_window = false, })
     end,
 }
+
 require'lspconfig'.texlab.setup{
     settings = {
         latex = {
