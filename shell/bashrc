@@ -12,3 +12,6 @@ PS1+="\[\e[0;95m\]\W\[\e[m\]" # current directory
 PS1+="\[\e[0;92m\]\$(git_branch)\[\e[m\]"    # current branch
 PS1+=" >> " # end
 export PS1;
+
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook bash)"

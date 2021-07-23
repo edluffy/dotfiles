@@ -9,3 +9,6 @@ PS1='%F{yellow}%n%f '
 PS1+='%F{magenta}%~%f '
 PS1+='%F{green}${vcs_info_msg_0_}%f'
 PS1+=' >> '
+
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
