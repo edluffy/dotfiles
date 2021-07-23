@@ -2,6 +2,4 @@
 [ -x "$(command -v nvim)" ] && alias vi='nvim'
 [ "$(uname 2> /dev/null)" != "Linux" ] && alias ls='ls -a -G' || alias ls='ls -a --color'
 
-[ "$(uname 2> /dev/null)" == "Linux" ] && xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
 export EDITOR='nvim'
