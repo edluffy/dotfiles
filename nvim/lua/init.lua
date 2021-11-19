@@ -1,17 +1,38 @@
 local plugins = {
     {'wbthomason/packer.nvim', opt = true},
-    {'folke/zen-mode.nvim'},
+
+    {'folke/zen-mode.nvim', cmd = 'ZenMode'},
+
+
+    -- TODO:
+    -- targets.lua (splitjoin)
+    -- splash.lua
+    -- init.lua
+    -- navbar.lua
+    -- autopair
+    -- gitlens
+    -- use omni func but say when there is completion
+
+    --{
+    --    'Shatur/neovim-ayu',
+    --    config = function()
+    --        vim.cmd('set background=light')
+    --        vim.g.ayu_mirage = true
+    --    end,
+    --},
 
     {
         'marko-cerovac/material.nvim',
+        enabled = false,
             config = function()
+                vim.cmd('set background=dark')
                 vim.g.material_style = 'palenight'
-                vim.g.material_italic_comments = true
-                vim.g.material_italic_keywords = true
-                vim.g.material_italic_functions = true
-                vim.g.material_hide_eob = true
-                vim.g.material_custom_colors = {active = '#343b51', accent = '#A6ACCD'}
-                require('material').set()
+                require('material').setup({
+                    italics = {comments = true, keywords = true, functions = true},
+                    disable = {eob_lines = true},
+                    custom_highlights = {active = '#343b51', accent = '#A6ACCD'},
+                })
+                vim.cmd('colorscheme material')
             end
     },
 
@@ -22,10 +43,10 @@ local plugins = {
             require('compe').setup{
                 source = {
                     path = true,
-                    buffer = true, 
+                    buffer = true,
                     calc = true,
-                    nvim_lsp = true, 
-                    nvim_lua = true
+                    nvim_lsp = true,
+                    nvim_lua = true,
                 }
             }
         end
@@ -39,31 +60,22 @@ local plugins = {
             require('nvim-treesitter.configs').setup{
                 ensure_installed = 'maintained',
                 highlight = {enable = true},
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "v",
-                        node_incremental = "v",
-                        scope_incremental = "grc",
-                        node_decremental = "V",
+                textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                            ["aa"] = "@parameter.outer",
+                            ["ia"] = "@parameter.inner",
+                            ["al"] = "@loop.outer",
+                            ["il"] = "@loop.inner",
+                        },
                     },
                 },
-                --textobjects = {
-                --    select = {
-                --        enable = true,
-                --        lookahead = true,
-                --        keymaps = {
-                --            ["af"] = "@function.outer",
-                --            ["if"] = "@function.inner",
-                --            ["ac"] = "@class.outer",
-                --            ["ic"] = "@class.inner",
-                --            ["aa"] = "@parameter.outer",
-                --            ["ia"] = "@parameter.inner",
-                --            ["al"] = "@loop.outer",
-                --            ["il"] = "@loop.inner",
-                --        },
-                --    },
-                --},
             }
         end,
     },
@@ -74,19 +86,19 @@ local plugins = {
         requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
     },
 
-    {
-        'romgrk/barbar.nvim',
-        requires = {'kyazdani42/nvim-web-devicons'},
-        config = function()
-            vim.g.bufferline = { animation = false, closable = false }
-        end,
-    },
+    --{
+    --    'romgrk/barbar.nvim',
+    --    requires = {'kyazdani42/nvim-web-devicons'},
+    --    config = function()
+    --        vim.g.bufferline = { animation = false, closable = false }
+    --    end,
+    --},
 
-    {
-        'lewis6991/gitsigns.nvim',
-        requires = 'nvim-lua/plenary.nvim',
-        config = function() require('gitsigns').setup{} end,
-    },
+    --{
+    --    'lewis6991/gitsigns.nvim',
+    --    requires = 'nvim-lua/plenary.nvim',
+    --    config = function() require('gitsigns').setup{} end,
+    --},
 
     -- Local plugins
     --{
@@ -94,10 +106,10 @@ local plugins = {
     --    config = function() require('specs').setup{} end,
     --},
     --
-    {
-        'edluffy/hologram.nvim',
-        config = function() require('hologram').setup{} end,
-    },
+    --{
+    --    '~/Dropbox/Projects/hologram',
+    --    config = function() require().setup{} end,
+    --},
 
     {
         'neovim/nvim-lspconfig',
@@ -110,39 +122,43 @@ local plugins = {
               }
             )
 
-            local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+            local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
             for type, icon in pairs(signs) do
-              local hl = "LspDiagnosticsSign" .. type
-              vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+              local hl = "DiagnosticSign" .. type
+              vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
             end
 
             vim.o.updatetime = 250
             vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.lsp.diagnostic.show_line_diagnostics({focusable=false})]]
-
-            require'lspconfig'.pyright.setup{}
-
-            require'lspconfig'.clangd.setup{
-                cmd = { "/usr/local/Cellar/llvm/11.1.0/bin/clangd", "--background-index" }
-            }
-
-            require'lspconfig'.texlab.setup{
-                settings = {
-                    latex = {
-                        build = {
-                            args = { "%f", "--synctex", "--keep-logs", "--keep-intermediates", },
-                            executable = "tectonic",
-                            onSave = true
-                        },
-                    },
-                },
-            }
         end,
     },
+
+    {
+        'williamboman/nvim-lsp-installer',
+        config = require("nvim-lsp-installer").on_server_ready(function(server)
+            local opts = {}
+
+            if server.name == 'sumneko_lua' then
+                opts = require('lua-dev').setup{}
+            end
+
+            if server.name == 'texlab' then
+                opts = { texlab = { build = {
+                    args = { "%f" },
+                    executable = "tectonic",
+                    onSave = true,
+                }}}
+            end
+
+            server:setup(opts)
+        end),
+        requires = {'folke/lua-dev.nvim'}
+    },
+
 }
 
 
 --[[ OPTIONS ]]--
-vim.cmd('set background=dark')
 vim.o.termguicolors = true
 vim.cmd[[ au TextYankPost * silent! lua vim.highlight.on_yank()]]
 
@@ -162,10 +178,17 @@ vim.g.vimsyn_embed = 'l'
 vim.g.markdown_fenced_languages = {'python', 'c', 'cpp', 'lua'}
 -- set inccommand=split
 
+vim.cmd('set formatoptions-=cro')
+
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 4
+vim.g.netrw_altv = 1
+vim.g.netrw_winsize = 15
+
 
 -- Mappings
 vim.g.mapleader = " "
-
 local function map(input, output)
     vim.api.nvim_set_keymap('n', input, output, { noremap = true, silent = true })
 end
@@ -173,23 +196,27 @@ end
 map('sl', ":TSTextobjectSwapNext @parameter.inner<cr>")
 map('sh', ":TSTextobjectSwapPrevious @parameter.inner<cr>")
 
-map('<leader>R', ":luafile ~/.config/nvim/lua/init.lua<cr>")
-map('<leader>h', ":Telescope help_tags theme=get_dropdown<cr>")
-map('<leader>f', ":lua require('telescope.builtin').find_files({previewer=false, theme=get_dropdown})<cr>")
-map('<leader>g', ":Telescope current_buffer_fuzzy_find<cr>")
-map('<leader>G', ":Telescope live_grep<cr>")
+map('<leader>l', ":luafile %<cr>")
+
+map('<leader><leader>',  ":Telescope<cr>")
+map('<leader>f',  ":Telescope help_tags theme=get_dropdown<cr>")
+map('<leader>R',  ":luafile ~/.config/nvim/lua/init.lua<cr>")
+map('<leader>h',  ":Telescope help_tags theme=get_dropdown<cr>")
+map('<leader>f',  ":lua require('telescope.builtin').find_files({previewer=false, theme=get_dropdown})<cr>")
+map('<leader>g',  ":Telescope current_buffer_fuzzy_find<cr>")
+map('<leader>G',  ":Telescope live_grep<cr>")
 map('<leader>ls', ":Telescope lsp_document_symbols<cr>")
 map('<leader>la', ":Telescope lsp_code_actions<cr>")
 map('<leader>ld', ":Telescope lsp_document_diagnostics<cr>")
+map('<leader>z',  ":ZenMode<cr>")
 
---map('gD',        ":lua vim.lsp.buf.declaration()<cr>")
+map('<leader>v',  ":vi ~/.config/nvim/lua/init.lua<cr>")
+map('<leader>p',  ":PackerSync<cr>")
+
 map('gd',        ":lua vim.lsp.buf.definition()<cr>")
 map('K',         ":lua vim.lsp.buf.hover()<cr>")
---map('gi',        ":lua vim.lsp.buf.implementation()<cr>")
-map('<C-k>',     ":lua vim.lsp.buf.signature_help()<cr>")
---map('<space>D',  ":lua vim.lsp.buf.type_definition()<cr>")
+--map('<C-k>',     ":lua vim.lsp.buf.signature_help()<cr>")
 map('<space>rn', ":lua vim.lsp.buf.rename()<cr>")
---map('gr',        ":lua vim.lsp.buf.references()<cr>")
 map('<space>e',  ":lua vim.lsp.diagnostic.show_line_diagnostics()<cr>")
 
 map('<C-H>', '<C-W><C-H>')
@@ -212,6 +239,6 @@ end
 
 require('packer').startup({function()
     for _, plugin in ipairs(plugins) do
-	    use(plugin)
+        use(plugin)
     end
 end, config = { display = {open_fn = require('packer.util').float}, }})

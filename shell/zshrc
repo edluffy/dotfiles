@@ -10,5 +10,14 @@ PS1+='%F{magenta}%~%f '
 PS1+='%F{green}${vcs_info_msg_0_}%f'
 PS1+=' >> '
 
+#source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+ZSH_AUTO=$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_SYNTAX=$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[[ -f "$ZSH_AUTO" ]] && source "$ZSH_AUTO"
+[[ -f "$ZSH_SYNTAX" ]] && source "$ZSH_SYNTAX"
+
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
