@@ -7,36 +7,33 @@ end
 
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'lewis6991/impatient.nvim'
     use 'nvim-lua/plenary.nvim'
 
     use 'kyazdani42/nvim-web-devicons'
     use 'sindrets/material.nvim'
 
-    --use '~/Dropbox/Projects/hologram'
     use 'nvim-telescope/telescope.nvim'
     use 'jose-elias-alvarez/buftabline.nvim'
+    use 'sindrets/diffview.nvim'
 
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
     use 'nvim-treesitter/nvim-treesitter'
 
-    use 'dstein64/vim-startuptime'
-    use 'lewis6991/impatient.nvim'
+    use 'rcarriga/nvim-notify'
 
-	use 'kyazdani42/nvim-tree.lua'
-    use 'Shatur/neovim-ayu'
+    use 'edluffy/hologram.nvim'
 
-    use {'romgrk/hologram.nvim', branch = 'development'}
-
-    use 'sindrets/diffview.nvim'
-
+    --use '~/Dropbox/Projects/hologram'
+    --use 'Shatur/neovim-ayu'
 
     if packer_bootstrap then
         require('packer').sync()
     end
 end)--, config = {compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'})
 
-require('nvim-tree').setup{}
+require('impatient')
 
 vim.opt.number = true
 vim.opt.colorcolumn = {80}
@@ -92,7 +89,7 @@ vim.g.material_style = 'palenight'
 vim.opt.background = 'dark'
 vim.cmd('colorscheme material')
 
---require('hologram').setup{}
+require('hologram').setup{}
 
 -- LSP
 
