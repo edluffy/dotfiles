@@ -1,5 +1,6 @@
 # Aliases
 [ -x "$(command -v nvim)" ] && alias vi='nvim'
 [ "$(uname 2> /dev/null)" != "Linux" ] && alias ls='ls -a -G' || alias ls='ls -a --color'
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 export EDITOR='nvim'
