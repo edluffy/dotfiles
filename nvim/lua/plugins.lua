@@ -18,27 +18,23 @@ return require('packer').startup { function(use)
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
 
-    use 'marko-cerovac/material.nvim'
-
     -- Core
     use 'neovim/nvim-lspconfig'
     use 'nvim-treesitter/nvim-treesitter'
     use 'nvim-telescope/telescope.nvim'
-    use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'williamboman/mason.nvim'
-    use 'jose-elias-alvarez/null-ls.nvim'
+    --use 'jose-elias-alvarez/null-ls.nvim'
 
     -- Navigation
-    use { 'akinsho/bufferline.nvim', tag = "v2.*" }
-    use 'kyazdani42/nvim-tree.lua'
+    --use { 'akinsho/bufferline.nvim', tag = "v2.*"}
+    --use 'kyazdani42/nvim-tree.lua'
 
     -- UI
-    use 'petertriho/nvim-scrollbar'
-    use 'karb94/neoscroll.nvim'
-    use '~/Dropbox/Projects/specs.nvim/'
+    --use '~/Dropbox/Projects/specs.nvim'
+    --use '~/Dropbox/Projects/hologram'
 
-    use 'edluffy/hologram.nvim'
-
+    use 'folke/tokyonight.nvim'
+    use 'lewis6991/satellite.nvim'
 
     if packer_bootstrap then
         require('packer').sync()
